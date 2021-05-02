@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,6 +16,8 @@ import com.qbo.exception.ResourceNotFoundException;
 import com.qbo.model.Cliente;
 import com.qbo.service.ClienteService;
 
+
+//@PreAuthorize("hasRole('ADMIN')")
 @RestController
 @RequestMapping(path = "api/v1/cliente")
 public class ClienteController {
@@ -22,6 +25,7 @@ public class ClienteController {
 	@Autowired
 	ClienteService servicio;
 	
+	//@PreAuthorize("hasRole('ADMIN')")
 	@GetMapping("/dni/{dni}")
 	public ResponseEntity<Cliente> buscarClientePorDni(@PathVariable("dni") 
 	String dni){
